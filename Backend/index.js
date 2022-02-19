@@ -1,12 +1,22 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
+const express = require('express'),
+    bodyParser = require('body-parser'),
+    app = express(),
+    cors = require('cors'), 
+    port = process.env.PORT || 3000;
 
-// Arquivos que gerenciam as querys executadas e dados
-const tasks = require('./querys/tasks');
+app.set('port', port)
 
-var app = express();
+//suporte para JSON
+app.use(cors());
+app.use( bodyParser.json() );       
+app.use(bodyParser.urlencoded({    
+  extended: true
+}));
 
-app.use('/', tasks);
+// INSTANCIO AS QUERYS
+const querys = require('./querys/tasks')
+app.use('/task', querys);
 
-app.listen(3000, () => console.log('Servidor Rodando'));
+app.listen(port, () => {
+  console.log('\nServidor rodando: http://localhost:' + port)
+})

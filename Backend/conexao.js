@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
 
 // Faz a conexão com o banco de dados
-const conn = new Pool({
+const con = new Pool({
     connectionString: 'postgres://postgres:master@localhost:5432/to-do-list'
 })
 
-conn.connect((err) => {
+con.connect((err) => {
     if (!err) {
         console.log('Conectado')
     } else {
@@ -13,4 +13,4 @@ conn.connect((err) => {
     }
 })
 
-module.exports = conn;
+module.exports = con;
