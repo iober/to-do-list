@@ -4,15 +4,15 @@
       <q-form @submit="addTask" @reset="onReset" class="q-gutter-md">
         <div>
           <q-input
+            color="primary"
             v-model="task"
-            outlined
             label="Descrição da Tarefa"
             maxlength="30"
             dense
             style="border: 30px"
           >
             <template v-slot:append>
-              <q-btn size="sm" round dense icon="add" @click="addTask()" color="indigo-5" :disable="!task"/>
+              <q-btn size="sm" round dense icon="add" @click="addTask()" color="blue-grey-6" :disable="!task"/>
             </template>
           </q-input>
         </div>
@@ -29,8 +29,10 @@
           default-opened
         >
           <div v-for="(t, index) in tasks" :key="t.idTask">
+            <div dense v-if="index === 0" class="bg-blue-grey-2 text-grey-9 text-center" style="font-size: X-small;heigth: 10px"><q-icon name="west" /> ARRASTE PARA REMOVER DEFINITIVAMENTE <q-icon name="east" /></div>
             <q-list bordered dense v-if="t.statusTask === 'A'" class="text-primary">
-              <q-item>
+            <q-slide-item @left="onLeft(t.idTask, index)" @right="onLeft(t.idTask, index)" dense left-color="red-6" label="Excluir">
+              <q-item dense>
                 <q-item-section>{{t.dsTask}}</q-item-section>
                 <q-item-section top side>
                   <div class="text-grey-8">
@@ -38,6 +40,13 @@
                   </div>
                 </q-item-section>
               </q-item>
+              <template v-slot:right>
+                <q-icon name="delete" /> Excluir
+              </template>
+              <template v-slot:left>
+                <q-icon name="delete" /> Excluir
+              </template>
+            </q-slide-item>
             </q-list>
           </div>
         </q-expansion-item>
@@ -52,8 +61,9 @@
           expand-icon-class="text-white"
         >
         <div v-for="(t, index) in tasks" :key="t.idTask">
-          <q-list bordered dense v-if="t.statusTask === 'C'" class="text-red-6">
-            <q-slide-item @left="onLeft(t.idTask, index)" @right="onRight" dense left-color="red-6" label="Excluir">
+          <div dense v-if="index === 0" class="bg-blue-grey-2 text-grey-9 text-center" style="font-size: X-small;heigth: 10px"><q-icon name="west" /> ARRASTE PARA REMOVER DEFINITIVAMENTE <q-icon name="east" /></div>
+            <q-list bordered dense v-if="t.statusTask === 'C'" class="text-red-6">
+            <q-slide-item @left="onLeft(t.idTask, index)" @right="onLeft(t.idTask, index)" dense left-color="red-6" label="Excluir">
               <q-item dense>
                 <q-item-section style="text-decoration: line-through">{{t.dsTask}}</q-item-section>
                 <q-item-section top side>
@@ -63,6 +73,9 @@
                 </q-item-section>
               </q-item>
               <template v-slot:left>
+                <q-icon name="delete" /> Excluir
+              </template>
+              <template v-slot:right>
                 <q-icon name="delete" /> Excluir
               </template>
             </q-slide-item>
@@ -89,7 +102,7 @@ export default {
   methods: {
     async carregaTasks() {
       this.$axios
-        .get("http://localhost:3000/task/carregarTask/")
+        .get("http://192.168.0.247:3000/task/carregarTask/")
         .then((response) => {
           this.tasks = response.data;
         })
@@ -108,7 +121,7 @@ export default {
         dados.dsTask = this.task
           const axiosConfig = {
             method: 'post',
-            url: 'http://localhost:3000/task/inserirTask/',
+            url: 'http://192.168.0.247:3000/task/inserirTask/',
             data: dados
           }
           this.onReset()
@@ -124,7 +137,7 @@ export default {
       dados.idTask = idtask
         const axiosConfig = {
           method: 'put',
-          url: 'http://localhost:3000/task/concluirTask/',
+          url: 'http://192.168.0.247:3000/task/concluirTask/',
           data: dados
         }
         this.onReset()
@@ -140,7 +153,7 @@ export default {
       dados.idTask = idtask
         const axiosConfig = {
           method: 'put',
-          url: 'http://localhost:3000/task/restaurar/',
+          url: 'http://192.168.0.247:3000/task/restaurar/',
           data: dados
         }
         this.onReset()
@@ -156,7 +169,7 @@ export default {
       dados.idTask = idtask
         const axiosConfig = {
           method: 'delete',
-          url: 'http://localhost:3000/task/excluir/',
+          url: 'http://192.168.0.247:3000/task/excluir/',
           data: dados
         }
         await this.$axios(axiosConfig.url, axiosConfig)

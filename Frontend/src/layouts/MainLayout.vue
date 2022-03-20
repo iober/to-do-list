@@ -2,14 +2,14 @@
   <q-layout view="hHh Lpr lff" class="shadow-2 rounded-borders">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
+        <!-- <q-btn
           flat
           dense
           round
           icon="menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
-        />
+        /> -->
 
         <q-toolbar-title> Lista de Tarefas </q-toolbar-title>
 
