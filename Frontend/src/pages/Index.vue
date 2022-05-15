@@ -102,7 +102,7 @@ export default {
   methods: {
     async carregaTasks() {
       this.$axios
-        .get("http://192.168.0.247:3000/task/carregarTask/")
+        .get("http://localhost:3000/task/carregarTask/")
         .then((response) => {
           this.tasks = response.data;
         })
@@ -121,7 +121,7 @@ export default {
         dados.dsTask = this.task
           const axiosConfig = {
             method: 'post',
-            url: 'http://192.168.0.247:3000/task/inserirTask/',
+            url: 'http://localhost:3000/task/inserirTask/',
             data: dados
           }
           this.onReset()
@@ -137,7 +137,7 @@ export default {
       dados.idTask = idtask
         const axiosConfig = {
           method: 'put',
-          url: 'http://192.168.0.247:3000/task/concluirTask/',
+          url: 'http://localhost:3000/task/concluirTask/',
           data: dados
         }
         this.onReset()
@@ -153,7 +153,7 @@ export default {
       dados.idTask = idtask
         const axiosConfig = {
           method: 'put',
-          url: 'http://192.168.0.247:3000/task/restaurar/',
+          url: 'http://localhost:3000/task/restaurar/',
           data: dados
         }
         this.onReset()
@@ -169,7 +169,7 @@ export default {
       dados.idTask = idtask
         const axiosConfig = {
           method: 'delete',
-          url: 'http://192.168.0.247:3000/task/excluir/',
+          url: 'http://localhost:3000/task/excluir/',
           data: dados
         }
         await this.$axios(axiosConfig.url, axiosConfig)
