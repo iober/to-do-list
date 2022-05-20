@@ -94,6 +94,7 @@ export default {
       task: null,
       concluiTask: null,
       tasks: [{}],
+      url: 'https://to-do-ihc.herokuapp.com'
     };
   },
   mounted() {
@@ -102,7 +103,7 @@ export default {
   methods: {
     async carregaTasks() {
       this.$axios
-        .get("http://localhost:3000/task/carregarTask/")
+        .get(this.url + "/task/carregarTask/")
         .then((response) => {
           this.tasks = response.data;
         })
@@ -121,7 +122,7 @@ export default {
         dados.dsTask = this.task
           const axiosConfig = {
             method: 'post',
-            url: 'http://localhost:3000/task/inserirTask/',
+            url: this.url + '/task/inserirTask/',
             data: dados
           }
           this.onReset()
@@ -137,7 +138,7 @@ export default {
       dados.idTask = idtask
         const axiosConfig = {
           method: 'put',
-          url: 'http://localhost:3000/task/concluirTask/',
+          url: this.url + '/task/concluirTask/',
           data: dados
         }
         this.onReset()
@@ -153,7 +154,7 @@ export default {
       dados.idTask = idtask
         const axiosConfig = {
           method: 'put',
-          url: 'http://localhost:3000/task/restaurar/',
+          url: this.url + '/task/restaurar/',
           data: dados
         }
         this.onReset()
@@ -169,7 +170,7 @@ export default {
       dados.idTask = idtask
         const axiosConfig = {
           method: 'delete',
-          url: 'http://localhost:3000/task/excluir/',
+           url: this.url + '/task/excluir/',
           data: dados
         }
         await this.$axios(axiosConfig.url, axiosConfig)

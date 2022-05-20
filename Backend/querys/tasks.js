@@ -2,6 +2,10 @@ const express = require('express');
 const Router = express.Router();
 const con = require('../conexao');
 
+app.get("/", (req, res ) => {
+  console.log('*** OK OK OK ***')
+})
+
 // QUERYS DO CRUD DAS TAREFAS
 Router.get("/carregarTask", async (req, res) => {
     var query = "select * from lista";

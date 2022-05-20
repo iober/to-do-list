@@ -18,5 +18,5 @@ const querys = require('./querys/tasks')
 app.use('/task', querys);
 
 app.listen(port, () => {
-  console.log('\nServidor rodando: http://localhost:' + port)
+  console.log('\nServidor rodando: ' + port)
 })

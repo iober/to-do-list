@@ -1,0 +1,22 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "API To-do-list",
+  "main": "index.js",
+  "dependencies": {
+    "async": "^3.2.3",
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Iober Henrique da Cruz",
+  "license": "ISC"
+}
