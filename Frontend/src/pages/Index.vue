@@ -61,7 +61,7 @@
           expand-icon-class="text-white"
         >
         <div v-for="(t, index) in tasks" :key="t.idTask">
-          <div dense v-if="index === 0" class="bg-blue-grey-2 text-grey-9 text-center" style="font-size: X-small;heigth: 10px"><q-icon name="west" /> ARRASTE PARA REMOVER DEFINITIVAMENTE <q-icon name="east" /></div>
+          <div dense v-if="index === 0" class="bg-blue-grey-2 text-grey-9 text-center" style="font-size: X-small;heigth: 10px"><q-icon name="west" /> ARRASTE PARA CD.. <q-icon name="east" /></div>
             <q-list bordered dense v-if="t.statusTask === 'C'" class="text-red-6">
             <q-slide-item @left="onLeft(t.idTask, index)" @right="onLeft(t.idTask, index)" dense left-color="red-6" label="Excluir">
               <q-item dense>
